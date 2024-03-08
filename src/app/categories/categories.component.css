@@ -1,0 +1,13 @@
+img{
+  object-fit: cover;
+  object-position: center;
+  height: 300px;
+}
+.cat{
+  border: 1px solid rgb(193, 193, 193);
+  border-radius: 8px;
+  transition: .3s;
+}
+.cat:hover{
+ box-shadow: 1px 1px 10px #4fa74f;
+}

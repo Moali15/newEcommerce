@@ -1,0 +1,43 @@
+<h1 class="main-text text-main text-center fw-bold py-4 h2"> All Brands</h1>
+<div class="container">
+  <div class="row g-4">
+    <div class="col-lg-3 col-md-6  " *ngFor="let i of brandsData">
+      <div class="brands py-3 cursor-pointer" (click)="getSpecBtn(i._id)" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+        <div class="img-brand d-flex justify-content-center align-items-center">
+          <img [src]="i.image" [alt]="i.name" class="img-fluid">
+        </div>
+        <div class="brand-content text-center">
+          <h1 class="h5 fw-bold">{{i.name}}</h1>
+        </div>
+      </div>
+      <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img [src]="brandssData?.image" [alt]="i.name" class="img-fluid d-flex justify-content-center h-25">
+            <p class="text-center">
+             {{ brandssData?.name}}
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

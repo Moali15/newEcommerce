@@ -1,0 +1,20 @@
+<div class="container my-5 bg-light">
+  <h1 class="h3">My Wish List</h1>
+  <div class="row align-items-center my-3 border-1 border-bottom pb-3" *ngFor="let i of allWishProducts">
+    <div class="col-md-2" >
+      <div class="img">
+        <img [src]="i.imageCover" alt="" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-md-10 d-flex justify-content-between align-items-center p-4">
+      <div>
+        <h1 class="h4">{{i.title}}</h1>
+        <p class="text-main">{{i.category.name}}</p>
+        <span class="d-block">Price:{{i.price}}EGP</span>
+      </div>
+      <div>
+        <button class="btn bg-transparent addCart" (click)="addToCart(i._id)">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>

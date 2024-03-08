@@ -1,0 +1,16 @@
+<div class="container py-5">
+  <div class="row  g-3">
+    <div class="col-lg-4" *ngFor="let i of catData">
+      <div class="cat-items cat cursor-pointer">
+        <div class="categ-img">
+          <img [src]="i.image" alt="" class="img-fluid ratio-4x3 w-100">
+        </div>
+        <div class="cat-content text-center py-4">
+          <h1 class="h4 fw-bold">
+            {{i.name}}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+<section class="register py-5">
+  <div class="container">
+    <h2 class="text-main mb-3">login Now :</h2>
+    <h2 class="alert alert-danger" *ngIf="errMassage">{{ errMassage }}</h2>
+    <form [formGroup]="loginUser" (ngSubmit)="submitBtn()">
+      <div class="mb-3">
+        <label>Email :</label>
+        <input formControlName="email" type="email" class="form-control" />
+        <div
+          *ngIf="
+            loginUser.get('email')?.errors && loginUser.get('email')?.touched
+          "
+          class="alert alert-danger"
+        >
+          <p *ngIf="loginUser.get('email')?.errors?.['required']">
+            email is requerd
+          </p>
+          <p *ngIf="loginUser.get('email')?.errors?.['email']">
+            email should be email valid
+          </p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>password :</label>
+        <input formControlName="password" type="text" class="form-control" />
+        <div
+          *ngIf="
+            loginUser.get('password')?.errors &&
+            loginUser.get('password')?.touched
+          "
+          class="alert alert-danger"
+        >
+          <p *ngIf="loginUser.get('password')?.errors?.['required']">
+            password is requerd
+          </p>
+          <p *ngIf="loginUser.get('password')?.errors?.['pattern']">
+            password be start with [A-Z]
+          </p>
+        </div>
+      </div>
+      <div class="buttons-login d-flex justify-content-end align-content-center">
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Forget password
+        </button>
+
+        <button
+          [disabled]="loginUser.invalid"
+          type="submit"
+          class="btn bg-main text-white"
+        >
+          Login <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+        </button>
+      </div>
+    </form>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Reset Your Password</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="forgetPasswordEmail" *ngIf="forgetPassword" (ngSubmit)="forgetPassBtn()" >
+              <div>
+                <label>Enter your email:</label>
+                <input formControlName="email" type="email" class="form-control" >
+                <p class="alert alert-danger" *ngIf="forgetEmailerr">{{forgetEmailerr}}</p>
+              </div>
+              <button type="submit" class="btn bg-main text-white d-block ms-auto mt-2">
+                Enter Email <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+              </button>
+            </form>
+            <form [formGroup]="verifyCode" *ngIf="verifyCodee" (ngSubmit)="verifyCodeBtn()">
+              <div>
+                <label>Verify Code:</label>
+                <input formControlName="resetCode" type="email" class="form-control" >
+                <p class="alert alert-danger" *ngIf="verifyerr">{{verifyerr}}</p>
+              </div>
+              <button type="submit" class="btn bg-main text-white d-block ms-auto mt-2">
+                Enter Code <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+              </button>
+            </form>
+            <form [formGroup]="ResetPassword" *ngIf="resetPass" (ngSubmit)="newPassBtn()" >
+              <div>
+                <label >Email:</label>
+                <input formControlName="email" type="email" class="form-control" >
+              </div>
+              <div>
+                <label >New Password:</label>
+                <input formControlName="newPassword" type="text" class="form-control" >
+              </div>
+              <p class="alert alert-danger" *ngIf="newPassErr">{{newPassErr}}</p>
+              <button type="submit" class="btn bg-main text-white d-block ms-auto mt-2">
+                Enter New Password <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

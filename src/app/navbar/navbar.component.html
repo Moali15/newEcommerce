@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="home">
+      <img src="assets/images/freshcart-logo.svg" alt="Logo" class="img-fluid">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between align-content-center" id="navbarNav">
+      <ul class="navbar-nav" >
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLinkActive="bg-main text-white rounded-pill" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLinkActive="bg-main text-white rounded-pill" routerLink="cart">Cart</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLinkActive="bg-main text-white rounded-pill" routerLink="brands">Brands</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLinkActive="bg-main text-white rounded-pill" routerLink="categories">Categories</a>
+        </li>
+        <li class="nav-item" *ngIf="isLogin">
+          <a class="nav-link" routerLinkActive="bg-main text-white rounded-pill" routerLink="products">Products</a>
+        </li>
+      </ul>
+      <div class="links d-flex gap-3 align-items-center" >
+        <i class="fa-solid fa-heart cursor-pointer text-danger fs-4" routerLink="/wishList" *ngIf="isLogin"></i>
+        <i class="fa-solid fa-cart-shopping cursor-pointer text-main" routerLink="cart" *ngIf="isLogin">
+        <span class="position-absolute bg-danger text-white">
+          {{itemsNumber}}
+        </span>
+      </i>
+        <a *ngIf="!isLogin" routerLink="login">Login</a>
+        <a *ngIf="!isLogin" routerLink="register">Register</a>
+        <a *ngIf="isLogin" class="cursor-pointer" (click)="logOut()">SignOut</a>
+      </div>
+    </div>
+  </div>
+</nav>

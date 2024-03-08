@@ -1,0 +1,54 @@
+<section class="w-75 mx-auto container rounded shadow bg-main-light p-3 my-3" *ngIf="cartDetails; else msg"  >
+  <div class="d-flex justify-content-between">
+    <h1 class="h2  fw-bold text-dark">Shop Cart</h1>
+  <!--       Clear -->
+  <button (click)="Clear()" class="btn btn-sm btn-outline-danger text-end">Clear Cart</button>
+  </div>
+
+
+
+  <div class="row align-items-center my-3 border-1 border-bottom pb-3" *ngFor="let item of allProducts">
+    <div class="col-md-2" >
+      <div class="img">
+        <img [src]="item.product.imageCover" alt="" class="img-fluid">
+      </div>
+    </div>
+
+
+
+    <div class="col-md-10 d-flex justify-content-between align-items-center p-4">
+      <div>
+        <h1 class="h4">{{item.product.title}}</h1>
+        <p class="text-main">{{item.product.category.name}}</p>
+        <span class="d-block">Price:{{item.price * item.count}}EGP</span>
+        <div class="trash" >
+          <button #btnRemove (click)="removeItem(item.product._id, btnRemove )" class="btn m-0 p-0 text-danger">
+          <i class="fa-solid fa-trash-can cursor-pointer py-3 ps-1"></i>
+          Remove
+        </button>
+        </div>
+      </div>
+      <div>
+        <button #btn1 (click)="ChangeCount(item.count -1,item.product._id, btn1 ,btn2 )"
+        class="btn btn-sm btn-outline-success ">-</button>
+
+        <span class="px-1">{{ item.count}}</span>
+
+        <button #btn2 (click)="ChangeCount(item.count +1 ,item.product._id, btn1 , btn2)"
+        class="btn btn-sm btn-outline-success ">+</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <button [routerLink]="['./payment',cartDetails._id]" class="btn btn-outline-success mt-3 rounded">
+    Online Payment  
+    <img src="./assets/images/visa-1.svg" alt="visa logo"></button>
+
+
+
+</section>
+<ng-template #msg>
+  <h2 class="w-75 mx-auto rounded text-danger text-center p-3 my-3">Your Cart Is Empty</h2>
+</ng-template>

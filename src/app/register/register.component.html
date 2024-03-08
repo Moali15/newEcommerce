@@ -1,0 +1,51 @@
+<section class="register py-5">
+  <div class="container">
+    <h2 class="text-main mb-3">Register Now :</h2>
+    <h2 class="alert alert-danger" *ngIf="errMessage">{{errMessage}}</h2>
+    <form [formGroup]="register" (ngSubmit)="submitBtn()">
+      <div class="mb-3">
+        <label>Name :</label>
+        <input formControlName="name" type="text" class="form-control">
+        <div *ngIf="register.get('name')?.errors && register.get('name')?.touched" class="alert alert-danger">
+          <p *ngIf="register.get('name')?.errors?.['required']">name is requerd</p>
+          <p *ngIf="register.get('name')?.errors?.['minlength']">name should be more than 3</p>
+          <p *ngIf="register.get('name')?.errors?.['maxlength']">name should be less than 8</p>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label>Email :</label>
+        <input formControlName="email" type="email" class="form-control">
+        <div *ngIf="register.get('email')?.errors && register.get('email')?.touched" class="alert alert-danger">
+          <p *ngIf="register.get('email')?.errors?.['required']">email is requerd</p>
+          <p *ngIf="register.get('email')?.errors?.['email']">email should be email valid</p>
+      </div>
+      </div>
+      <div class="mb-3">
+        <label>password :</label>
+        <input formControlName="password" type="text" class="form-control">
+         <div *ngIf="register.get('password')?.errors && register.get('password')?.touched" class="alert alert-danger">
+            <p *ngIf="register.get('password')?.errors?.['required']">password is requerd</p>
+            <p *ngIf="register.get('password')?.errors?.['pattern']">password be start with [A-Z]</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>rePassword :</label>
+        <input formControlName="rePassword" type="text" class="form-control">
+         <div *ngIf="register.get('rePassword')?.errors && register.get('rePassword')?.touched" class="alert alert-danger">
+            <p *ngIf="register.get('rePassword')?.errors?.['required']">password is requerd</p>
+            <p *ngIf="register.get('rePassword')?.errors?.['pattern']">password be start with [A-Z]</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>phone :</label>
+        <input formControlName="phone" type="text" class="form-control">
+         <div *ngIf="register.get('phone')?.errors && register.get('phone')?.touched" class="alert alert-danger">
+            <p *ngIf="register.get('phone')?.errors?.['required']">phone is requerd</p>
+            <p *ngIf="register.get('phone')?.errors?.['pattern']">phone be start with [A-Z]</p>
+        </div>
+      </div>
+
+      <button [disabled]="register.invalid" type="submit" class="btn bg-main text-white d-block ms-auto">Login <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i></button>
+    </form>
+  </div>
+  </section>

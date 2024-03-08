@@ -1,0 +1,85 @@
+<div class="container">
+  <!-- s slider -->
+  <section class="py-3" >
+<div class="row g-0">
+  <div class="col-md-9">
+    <owl-carousel-o [options]="mainSliderOptions">
+      <ng-template carouselSlide> 
+        <img class="w-100" height="400" src="./assets/images/slider-image-2.jpeg" alt="slide1">
+      </ng-template>   
+      <ng-template carouselSlide> 
+        <img class="w-100" height="400" src="./assets/images/slider-image-1.jpg" alt="slide1">
+      </ng-template>  
+      <ng-template carouselSlide> 
+        <img height="400" class="w-100" src="./assets/images/slider-image-3.jpg" alt="slide3">
+      </ng-template>  
+      
+    </owl-carousel-o>
+  </div>
+  <div class="col-md-3">
+    <img class="w-100" height="200" src="../../assets/images/slider-2.jpeg" alt="">
+    <img class="w-100" height="200"  src="../../assets/images/slider-3.jpeg" alt="">
+  </div>
+</div>
+
+
+
+
+
+  </section>
+  <!-- d slider -->
+  <section class="py-4" *ngIf="Catgories.length > 0">
+    <h2>popular Categories</h2>
+    <owl-carousel-o [options]="CategoryOptions">
+
+      <ng-container *ngFor="let category of Catgories">
+        <ng-template carouselSlide>
+          <img style="height: 300px;"
+          [src]="category.image"
+          [alt]="category.name"
+          [title]="category.name">
+          <h3 class="h6 text-main">{{category.name}}</h3>
+        </ng-template>
+      </ng-container>
+  
+    </owl-carousel-o>
+
+  </section>
+
+
+
+
+  <div class="row g-4">
+    <div class="col-md-4 col-lg-2 " *ngFor="let items of productData" >
+      <div class="product overflow-hidden cursor-pointer position-relative">
+        <div class="heart-icon position-absolute">
+          <i class="fa-regular fa-heart fs-3 " *ngIf="!isHeart.includes(items.id)"  (click)="addToWishList(items.id)"></i>
+          <i class="fa-solid fa-heart text-danger fs-3" *ngIf="isHeart.includes(items.id)" (click)="  removeFromWishList(items.id)"  ></i>
+        </div>
+        <div [routerLink]="['/productDetials' , items.id]">
+          <div class="img">
+            <img [src]="items?.imageCover" alt="" class="img-fluid">
+          </div>
+          <div class="product-content p-2">
+            <p class="text-main">{{items?.category?.name}}</p>
+            <h1 class="h5">{{items?.title?.split(" ")?.slice(0,2)?.join(" ")}}</h1>
+            <div class="d-flex justify-content-between">
+              <span>{{items?.price}}EGP</span>
+              <span><i class="fa-solid fa-star rating-color"></i>{{items?.ratingsAverage}}</span>
+            </div>
+          </div>
+        </div>
+
+
+        <footer>
+        <div class="p-2 add-to-cart">
+          <button #btnAdd  class="btn bg-main w-100 text-white" 
+          (click)="addToCart(items._id, btnAdd )" 
+          
+          >Add To Cart</button>
+        </div>
+      </footer>
+      </div>
+    </div>
+  </div>
+</div>

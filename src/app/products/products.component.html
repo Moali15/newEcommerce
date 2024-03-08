@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row g-4">
+    <div class="col-md-4 col-lg-2 " *ngFor="let items of productData | paginate: { id: 'some_id',
+    itemsPerPage: pageSize,
+    currentPage: p,
+    totalItems: total }" >
+      <div class="product overflow-hidden cursor-pointer position-relative">
+        <div class="heart-icon position-absolute">
+          <i class="fa-regular fa-heart fs-3"  (click)="addToWishList(items.id)"></i>
+          <!-- <i class="fa-solid fa-heart text-danger fs-3" ></i> -->
+        </div>
+        <div [routerLink]="['/productDetials' , items.id]">
+          <div class="img">
+            <img [src]="items?.imageCover" alt="" class="img-fluid">
+          </div>
+          <div class="product-content p-2">
+            <p class="text-main">{{items?.category?.name}}</p>
+            <h1 class="h5">{{items?.title?.split(" ")?.slice(0,2)?.join(" ")}}</h1>
+            <div class="d-flex justify-content-between">
+              <span>{{items?.price}}EGP</span>
+              <span><i class="fa-solid fa-star rating-color"></i>{{items?.ratingsAverage}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-2 add-to-cart">
+          <button class="btn bg-main w-100 text-white" (click)="addToCart(items._id)">ADD ITEM</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls  id="some_id" class="d-flex justify-content-center"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
